@@ -17,11 +17,15 @@ public class Feedback {
     private final String attempt;
     private final List<Mark> marks;
 
+    public Feedback(String attempt) {
+        this(attempt, new ArrayList<>());
+    }
+
     public Feedback(String attempt, List<Mark> marks) {
         this.attempt = attempt;
         this.marks = marks;
 
-        if (attempt.length() != marks.size()) {
+        if (!marks.isEmpty() && attempt.length() != marks.size()) {
             throw new InvalidFeedbackException();
         }
     }
@@ -37,17 +41,27 @@ public class Feedback {
     public Hint giveHint() {
         List<Character> characters = new ArrayList<>();
 
-        int index = 0;
-        for (Mark mark : marks) {
-            if (mark == Mark.CORRECT) {
-                characters.add(attempt.charAt(index));
-            } else {
-                characters.add('.');
+        if (marks.isEmpty()) {
+            for (int i = 0; i < attempt.length(); i++) {
+                if (i==0) {
+                    characters.add(attempt.charAt(i));
+                } else {
+                    characters.add('.');
+                }
+            }
+        } else {
+            int index = 0;
+            for (Mark mark : marks) {
+                if (mark == Mark.CORRECT) {
+                    characters.add(attempt.charAt(index));
+                } else {
+                    characters.add('.');
+                }
+
+                index++;
             }
 
-            index++;
         }
-
         return new Hint(characters);
     }
 }
