@@ -1,4 +1,4 @@
-package nl.hu.cisq1.lingo.words;
+package nl.hu.cisq1.lingo.trainer;
 
 import nl.hu.cisq1.lingo.trainer.data.SpringWordRepository;
 import nl.hu.cisq1.lingo.trainer.domain.Word;

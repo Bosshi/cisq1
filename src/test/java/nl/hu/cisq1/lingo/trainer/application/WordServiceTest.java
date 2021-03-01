@@ -1,6 +1,5 @@
-package nl.hu.cisq1.lingo.words.application;
+package nl.hu.cisq1.lingo.trainer.application;
 
-import nl.hu.cisq1.lingo.trainer.application.WordService;
 import nl.hu.cisq1.lingo.trainer.data.SpringWordRepository;
 import nl.hu.cisq1.lingo.trainer.domain.Word;
 import nl.hu.cisq1.lingo.trainer.domain.exception.WordLengthNotSupportedException;

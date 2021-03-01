@@ -1,4 +1,4 @@
-package nl.hu.cisq1.lingo.words.presentation;
+package nl.hu.cisq1.lingo.trainer.presentation;
 
 import nl.hu.cisq1.lingo.CiTestConfiguration;
 import org.junit.jupiter.api.DisplayName;
