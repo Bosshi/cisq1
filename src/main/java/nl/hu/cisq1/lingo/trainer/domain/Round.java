@@ -14,11 +14,11 @@ import java.util.List;
 @ToString
 public class Round {
     private Word toGuessWord;
-    private List<Feedback> feedback;
+    private List<Feedback> feedbacks;
 
     public Round(Word toGuessWord, List<Feedback> feedback) {
         this.toGuessWord = toGuessWord;
-        this.feedback = feedback;
+        this.feedbacks = feedback;
     }
 
     public Hint startRound() {
@@ -44,7 +44,7 @@ public class Round {
         }
 
         Feedback feedback = new Feedback(attempt, feedbackMarks);
-        this.feedback.add(feedback);
+        this.feedbacks.add(feedback);
 
         return feedback;
     }

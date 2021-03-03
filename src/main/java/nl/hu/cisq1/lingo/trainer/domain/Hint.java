@@ -12,9 +12,9 @@ import java.util.List;
 @EqualsAndHashCode
 @ToString
 public class Hint {
-    private List<Character> hint;
+    private List<Character> hintValues;
 
-    public Hint(List<Character> hint) {
-        this.hint = hint;
+    public Hint(List<Character> hintValues) {
+        this.hintValues = hintValues;
     }
 }

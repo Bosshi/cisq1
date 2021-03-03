@@ -41,9 +41,12 @@ class FeedbackTest {
     @Test
     @DisplayName("exception is thrown when the word length of the attempt doesn't equal the mark length")
     void attemptLengthDoesNotEqualMarkSize() {
+        List<Mark> marks = List.of(Mark.CORRECT);
+        String attempt = "woord";
+
         assertThrows(
                 InvalidFeedbackException.class,
-                () -> new Feedback("woord", List.of(Mark.CORRECT))
+                () -> new Feedback(attempt, marks)
         );
     }
 
@@ -51,6 +54,6 @@ class FeedbackTest {
     @DisplayName("letters are shown in hint if marks are correct")
     void correctLettersAreShownInHint() {
         Feedback feedback = new Feedback("moord", List.of(Mark.ABSENT, Mark.CORRECT, Mark.CORRECT, Mark.CORRECT, Mark.CORRECT));
-        assertEquals("[., o, o, r, d]", feedback.giveHint().getHint().toString());
+        assertEquals("[., o, o, r, d]", feedback.giveHint().getHintValues().toString());
     }
 }

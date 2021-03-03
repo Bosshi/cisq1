@@ -18,7 +18,7 @@ class RoundTest {
     void startRoundGivesCorrectHint() {
         Round round = new Round(new Word("woord"), new ArrayList<>());
         Hint hint = round.startRound();
-        assertEquals("[w, ., ., ., .]", hint.getHint().toString());
+        assertEquals("[w, ., ., ., .]", hint.getHintValues().toString());
     }
 
     @ParameterizedTest
