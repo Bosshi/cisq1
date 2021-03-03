@@ -18,7 +18,7 @@ public class Word {
         this.value = word;
         this.length = word.length();
 
-        if (length < 5 || length > 7) {
+        if (this.length < 5 || this.length > 7) {
             throw new InvalidWordLengthException();
         }
     }

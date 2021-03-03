@@ -60,7 +60,6 @@ public class Feedback {
 
                 index++;
             }
-
         }
         return new Hint(characters);
     }
