@@ -1,12 +1,12 @@
 package nl.hu.cisq1.lingo.trainer.domain;
 
+import nl.hu.cisq1.lingo.trainer.domain.exception.ExceededGuessAttemptException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -14,10 +14,10 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class RoundTest {
     @Test
-    @DisplayName("hint is shown when round has started")
-    void startRoundGivesCorrectHint() {
-        Round round = new Round(new Word("woord"), new ArrayList<>());
-        Hint hint = round.startRound();
+    @DisplayName("correct hint is shown when round has started")
+    void startingTheRoundGivesCorrectHint() {
+        Round round = new Round(new Word("woord"));
+        Hint hint = round.start();
         assertEquals("[w, ., ., ., .]", hint.getHintValues().toString());
     }
 
@@ -25,7 +25,7 @@ class RoundTest {
     @MethodSource("provideFeedbackExamplesAfterGuessAttempt")
     @DisplayName("correct hint and marks are shown when attempt is made")
     void correctFeedbackIsGivenAfterGuessAttempt(String attempt, List<Mark> marks) {
-        Round round = new Round(new Word("woord"), new ArrayList<>());
+        Round round = new Round(new Word("woord"));
         Feedback feedback = round.guessWord(attempt);
         assertEquals(marks, feedback.getMarks());
     }
@@ -38,4 +38,22 @@ class RoundTest {
                 Arguments.of("scooter", List.of(Mark.INVALID, Mark.INVALID, Mark.INVALID, Mark.INVALID, Mark.INVALID, Mark.INVALID, Mark.INVALID))
         );
     }
+
+    @Test
+    @DisplayName("exception is thrown when the guess attempt limit of 5 has been exceeded")
+    void guessAttemptsLimitExceeded() {
+        Round round = new Round(new Word("woord"));
+        round.guessWord("poort");
+        round.guessWord("loord");
+        round.guessWord("moord");
+        round.guessWord("horde");
+        round.guessWord("gekte");
+
+        assertThrows(
+                ExceededGuessAttemptException.class,
+                () -> round.guessWord("grappig")
+        );
+    }
+
+
 }
