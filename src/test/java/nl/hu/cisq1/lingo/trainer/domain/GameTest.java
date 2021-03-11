@@ -23,9 +23,9 @@ class GameTest {
     }
 
     private static Stream<Arguments> provideScoreExamples() {
-        Round firstAttemptGuess = new Round(true, new Word("woord"), List.of(new Feedback("woord", List.of(Mark.CORRECT, Mark.CORRECT, Mark.CORRECT, Mark.CORRECT, Mark.CORRECT))));
-        Round secondAttemptGuess = new Round(true, new Word("woord"), List.of(new Feedback("moord", List.of(Mark.ABSENT, Mark.CORRECT, Mark.CORRECT, Mark.CORRECT, Mark.CORRECT)), new Feedback("woord", List.of(Mark.CORRECT, Mark.CORRECT, Mark.CORRECT, Mark.CORRECT, Mark.CORRECT))));
-
+        Round firstAttemptGuess = new Round(new Word("woord"), List.of(new Feedback("woord", List.of(Mark.CORRECT, Mark.CORRECT, Mark.CORRECT, Mark.CORRECT, Mark.CORRECT))));
+        Round secondAttemptGuess = new Round(new Word("woord"), List.of(new Feedback("moord", List.of(Mark.ABSENT, Mark.CORRECT, Mark.CORRECT, Mark.CORRECT, Mark.CORRECT)), new Feedback("woord", List.of(Mark.CORRECT, Mark.CORRECT, Mark.CORRECT, Mark.CORRECT, Mark.CORRECT))));
+        
         return Stream.of(
                 Arguments.of(List.of(firstAttemptGuess, secondAttemptGuess), 45)
         );

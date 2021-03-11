@@ -31,9 +31,9 @@ class WordServiceTest {
     @MethodSource("randomWordExamples")
     void providesRandomWord(int wordLength, String word) {
         SpringWordRepository mockRepository = mock(SpringWordRepository.class);
+
         when(mockRepository.findRandomWordByLength(wordLength))
                 .thenReturn(Optional.of(new Word(word)));
-
         WordService service = new WordService(mockRepository);
         String result = service.provideRandomWord(wordLength);
 

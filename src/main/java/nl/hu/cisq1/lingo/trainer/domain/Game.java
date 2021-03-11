@@ -20,7 +20,7 @@ public class Game {
         int totalScore = 0;
 
         for (Round round: rounds) {
-            if (round.isFinished()) {
+            if (round.isRoundCompleted()) {
                 int attempts = round.getFeedbacks().size();
                 totalScore += 5 * (5 - attempts) + 5;
             }
