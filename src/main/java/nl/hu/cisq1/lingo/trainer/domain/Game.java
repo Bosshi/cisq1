@@ -16,6 +16,15 @@ public class Game {
         this.rounds = rounds;
     }
 
+    public Round provideRound(Word toGuessWord) {
+        this.calculateScore();
+
+        Round round = new Round(toGuessWord);
+        this.rounds.add(round);
+
+        return round;
+    }
+
     public void calculateScore() {
         int totalScore = 0;
 
